@@ -1,3 +1,10 @@
+@keyframes shake {
+  from { transform: rotate(0);}
+  33% { transform: rotate(5deg);}
+  66% { transform: rotate(-5deg);}
+  to { transform: rotate(0);}
+}
+
 .App {
   text-align: center;
 }
@@ -41,13 +48,28 @@
 }
 
 .game__card {
+  position: relative;
   margin: 4% 0 0 4%;
   width: 20%;
   padding-bottom: 20%;
-  background-color: #293540;
   border-radius: 5%;
   box-shadow: 1px 1px 2px;
+  background-color: #293540;
 }
+
+.game__card:hover {
+  animation: shake .7s; 
+}
+
+.game__card_icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 42px;
+}
+
 
 
 @media only screen and (max-width: 768px) {

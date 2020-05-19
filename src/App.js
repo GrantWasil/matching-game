@@ -1,42 +1,115 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState, useEffect} from "react";
+import "./App.css";
+
+// Components
+import Game from "./components/Game.js";
+
+const App = () => {
+
+  const gameOptions = [
+    {
+      name: "car",
+      icon: "far fa-car",
+    },
+    {
+      name: "home",
+      icon: "far fa-home-lg",
+    },
+    {
+      name: "crown",
+      icon: "far fa-crown",
+    },
+    {
+      name: "dollar",
+      icon: "far fa-usd-circle",
+    },
+    {
+      name: "wifi",
+      icon: "far fa-wifi",
+    },
+    {
+      name: "phone",
+      icon: "far fa-phone",
+    },
+    {
+      name: "meh",
+      icon: "far fa-meh",
+    },
+    {
+      name: "global",
+      icon: "far fa-globe-stand",
+    },
+    {
+      name: "car",
+      icon: "far fa-car",
+    },
+    {
+      name: "home",
+      icon: "far fa-home-lg",
+    },
+    {
+      name: "crown",
+      icon: "far fa-crown",
+    },
+    {
+      name: "dollar",
+      icon: "far fa-usd-circle",
+    },
+    {
+      name: "wifi",
+      icon: "far fa-wifi",
+    },
+    {
+      name: "phone",
+      icon: "far fa-phone",
+    },
+    {
+      name: "meh",
+      icon: "far fa-meh",
+    },
+    {
+      name: "global",
+      icon: "far fa-globe-stand",
+    },
+  ]
+
+  const [cards, setCards] = useState(gameOptions)
+  const [flipped, setFlipped] = useState(false)
 
 
+  // To be ran when the game loads and every time the game is reset
+  const reset = (cards, setCards) => {
+    let tempArray = cards
+    console.log(tempArray)
+    let counter = tempArray.length
+    let hold
+    let index
 
-function App() {
+    while (counter > 0) {
+      index = Math.floor(Math.random() * counter)
+      counter --
+      hold = tempArray[counter]
+      tempArray[counter] = tempArray[index]
+      tempArray[index] = hold
+    }
 
+    setCards(tempArray)
+  }
+
+  useEffect(() => {
+    reset(cards, setCards)
+  })
 
   return (
     <div className="root">
-      <div className="game">
-        <h1 className="game__title">Matching Game</h1>
-        <ul className="options">
-          <li className="options__choice options__choice_lives">Stars</li>
-          <li className="options__choice options__choice_timer">Timer</li>
-          <li className="options__choice options__choice_moves">8 Moves</li>
-          <li className="options__choice options__choice_reset">Reset</li>
-        </ul>
-        <div className="game__container">
-          <div className="game__card game__card_one"></div>
-          <div className="game__card game__card_two"></div>
-          <div className="game__card game__card_three"></div>
-          <div className="game__card game__card_four"></div>
-          <div className="game__card game__card_five"></div>
-          <div className="game__card game__card_six"></div>
-          <div className="game__card game__card_seven"></div>
-          <div className="game__card game__card_eight"></div>
-          <div className="game__card game__card_nine"></div>
-          <div className="game__card game__card_ten"></div>
-          <div className="game__card game__card_eleven"></div>
-          <div className="game__card game__card_twelve"></div>
-          <div className="game__card game__card_thirteen"></div>
-          <div className="game__card game__card_fourteen"></div>
-          <div className="game__card game__card_fifthteen"></div>
-          <div className="game__card game__card_sixteen"></div>
-        </div>
-      </div>
+      <Game 
+        cards={cards}
+        setCards={setCards}
+        flipped={flipped}
+        setFlipped={setFlipped} 
+      />
     </div>
   );
-}
+};
 
 export default App;
