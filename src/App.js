@@ -5,6 +5,8 @@ import "./App.css";
 import Game from "./components/Game.js";
 
 const App = () => {
+  const [cards, setCards] = useState([])
+  const [flipped, setFlipped] = useState(false)
 
   const gameOptions = [
     {
@@ -73,10 +75,6 @@ const App = () => {
     },
   ]
 
-  const [cards, setCards] = useState(gameOptions)
-  const [flipped, setFlipped] = useState(false)
-
-
   // To be ran when the game loads and every time the game is reset
   const reset = (cards, setCards) => {
     let tempArray = cards
@@ -97,17 +95,22 @@ const App = () => {
   }
 
   useEffect(() => {
-    reset(cards, setCards)
-  })
+    reset(gameOptions, setCards)
+  }, [])
 
   return (
     <div className="root">
-      <Game 
-        cards={cards}
-        setCards={setCards}
-        flipped={flipped}
-        setFlipped={setFlipped} 
-      />
+      {cards.length > 0 ?
+        <Game 
+          cards={cards}
+          setCards={setCards}
+          flipped={flipped}
+          setFlipped={setFlipped}
+          reset={reset}
+          />
+        :
+        <div>Loading...</div>
+      }
     </div>
   );
 };

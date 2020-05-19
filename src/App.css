@@ -1,7 +1,7 @@
 @keyframes shake {
   from { transform: rotate(0);}
   33% { transform: rotate(5deg);}
-  66% { transform: rotate(-5deg);}
+  66% { transform: rotate(-3deg);}
   to { transform: rotate(0);}
 }
 
